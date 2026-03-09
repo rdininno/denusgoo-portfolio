@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+
+# Dependencies (if you add npm packages later)
+node_modules/
+
+# Logs
+*.log
+
+# Local env files (if you ever use them)
+.env
+.env.local

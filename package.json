@@ -1,9 +1,9 @@
 {
-  "name": "denusgoo-portfolio",
-  "version": "1.0.0",
-  "description": "Denusgoo Portfolio Site",
-  "scripts": {
-    "start": "npx serve .",
-    "dev": "npx live-server --port=3000"
-  }
+    "name": "denusgoo-portfolio",
+    "version": "1.0.0",
+    "description": "Denusgoo Portfolio Site",
+    "scripts": {
+        "start": "npx serve .",
+        "dev": "npx live-server --port=3000"
+    }
 }

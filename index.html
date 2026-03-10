@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
@@ -30,29 +30,44 @@
             <div class="blob blob-5"></div>
         </div>
 
-        <!-- Landing Page -->
-        <main class="landing" id="landing">
+        <!-- Intro Section -->
+        <section class="intro">
+            <div class="intro-overlay"></div>
+            <!-- Gallery slides sit BEHIND the text -->
+            <div class="featured-gallery" id="featured-gallery">
+                <div class="featured-slide featured-slide-1"></div>
+                <div class="featured-slide featured-slide-2"></div>
+                <div class="featured-slide featured-slide-3"></div>
+                <div class="featured-slide featured-slide-4"></div>
+            </div>
+
+            <!-- Text sits on top with mix-blend-mode -->
+            <h1 class="intro-name">Denusgoo</h1>
+        </section>
+
+        <!-- Landing Section -->
+        <section class="landing">
             <div class="landing-content">
-                <h1 class="landing-name" data-lottery>Denusgoo</h1>
                 <p class="landing-tagline">Artist & Creator</p>
 
                 <div class="landing-buttons">
-                    <a href="drawings.html" class="btn btn-drawings" data-magnetic>
+                    <a href="drawings.html" class="btn btn-drawings">
                         <span class="btn-bg"></span>
                         <span class="btn-text">Drawings</span>
                         <span class="btn-arrow">→</span>
                     </a>
 
-                    <a href="videos.html" class="btn btn-videos" data-magnetic>
+                    <a href="videos.html" class="btn btn-videos">
                         <span class="btn-bg"></span>
                         <span class="btn-text">Videos</span>
                         <span class="btn-arrow">→</span>
                     </a>
                 </div>
             </div>
-        </main>
+        </section>
 
         <!-- Scripts -->
         <script src="js/app.js"></script>
+        <script src="js/featured.js"></script>
     </body>
 </html>

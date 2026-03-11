@@ -135,7 +135,7 @@ img {
     .intro-overlay {
         position: absolute;
         inset: 0;
-        background: #000;
+        background: linear-gradient(90deg, #87c540, black);
         z-index: 2;
         width: calc(100% + 2px);
     }

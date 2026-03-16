@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Ready to animate!');
 
     gsap.set('.intro-name', { xPercent: 100 });
+    gsap.set('.landing-content', {
+        yPercent: 100,
+        opacity: 0,
+    });
 
     const slides = gsap.utils.toArray('.featured-slide');
 
@@ -67,6 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             `slide-${i}`
         );
+    });
+
+    tl.to('.landing-content', {
+        yPercent: 0,
+        opacity: 1,
+        duration: 3,
+        ease: 'power2.out',
     });
 
     // Phase 4: Hold on last slide briefly

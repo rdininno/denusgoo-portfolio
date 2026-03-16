@@ -51,13 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     ScrollTrigger.observe({
         type: 'wheel,touch,pointer',
+        wheelSpeed: -1,
         onChangeY(self) {
-            const multiplier = ScrollTrigger.isTouch === 1 ? 0.0003 : 0.0005;
-            progress += self.deltaY * multiplier;
-            progress = gsap.utils.clamp(0, 1, progress);
+            progress -= self.deltaY * speed;
+            if (progress < 0) progress = 0;
+            if (progress > 1) progress = 1;
             gsap.to(tl, {
                 progress: progress,
-                duration: 2,
+                duration: 1.2,
                 ease: 'power2.out',
                 overwrite: true,
             });

@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let tl = gsap.timeline({ paused: true });
 
     // Phase 1: Overlay off + text in
-    tl.to('.intro-overlay', { xPercent: -100, duration: 2 }, 0);
-    tl.to('.intro-name', { xPercent: 0, duration: 2 }, 0);
+    tl.to('.intro-overlay', { xPercent: -100, duration: 3 }, 0);
+    tl.to('.intro-name', { xPercent: 0, duration: 3 }, 0);
 
     // Phase 2: Reveal
     tl.to(
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Use Observer to drive the timeline
     let progress = 0;
-    const speed = 0.0003;
+    const speed = 0.0008;
 
     ScrollTrigger.observe({
         type: 'wheel,touch,pointer',

@@ -7,6 +7,14 @@ gsap.registerPlugin(ScrollTrigger);
 // DOM READY
 // ============================================
 document.addEventListener('DOMContentLoaded', function () {
+    ScrollTrigger.normalizeScroll({
+        type: 'touch,wheel,pointer',
+    });
+
+    ScrollTrigger.config({
+        ignoreMobileResize: true,
+    });
+
     gsap.set('.intro-name', { xPercent: 100 });
     gsap.set('.landing-content', { yPercent: 100, opacity: 0 });
 

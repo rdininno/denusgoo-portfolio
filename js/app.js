@@ -7,15 +7,11 @@ gsap.registerPlugin(ScrollTrigger);
 // DOM READY
 // ============================================
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Ready to animate!');
-
     gsap.set('.intro-name', { xPercent: 100 });
-    gsap.set('.landing-content', {
-        yPercent: 100,
-        opacity: 0,
-    });
+    gsap.set('.landing-content', { yPercent: 100, opacity: 0 });
 
     const slides = gsap.utils.toArray('.featured-slide');
+    gsap.set(slides[1], { yPercent: 100 });
 
     let tl = gsap.timeline({
         scrollTrigger: {
@@ -27,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     });
 
+    // Phase 1: Overlay off + text in
     tl.to(
         '.intro-overlay',
         {
@@ -45,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         0
     );
 
+    // Phase 2: Reveal — bg transparent, text black
     tl.to(
         '.intro-name',
         {
@@ -55,24 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
         '+=1'
     );
 
-    gsap.set(slides[1], { xPercent: 100 });
-    gsap.set(slides[2], { yPercent: 100 });
-    gsap.set(slides[3], { xPercent: -100 });
-
-    slides.forEach((slide, i) => {
-        if (i === 0) return;
-
-        tl.to(
-            slide,
-            {
-                xPercent: 0,
-                yPercent: 0,
-                duration: 2,
-            },
-            `slide-${i}`
-        );
+    // Phase 3: Second slide up from bottom
+    tl.to(slides[1], {
+        yPercent: 0,
+        duration: 3,
+        ease: 'power2.out',
     });
 
+    // Phase 4: Buttons rise up
     tl.to('.landing-content', {
         yPercent: 0,
         opacity: 1,
@@ -80,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ease: 'power2.out',
     });
 
-    // Phase 4: Hold on last slide briefly
+    // Hold
     tl.to({}, { duration: 1 });
 });
 

@@ -37,7 +37,7 @@ async function loadFeaturedGallery() {
 
         // Shuffle and pick 4
         const shuffled = images.sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 4);
+        const selected = shuffled.slice(0, 2);
 
         // Apply images to slides (including first image)
         const slides = container.querySelectorAll('.featured-slide');

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (intro) {
         gsap.set('.intro-name', { xPercent: 100 });
-        gsap.set('.btn-drawings', { yPercent: 600, opacity: 0 });
+        gsap.set('.btn-drawings', { yPercent: 800, opacity: 0 });
         gsap.set('.btn-videos', { yPercent: 1000, opacity: 0 });
         gsap.set('.btn-photography', { yPercent: 1000, opacity: 0 });
 

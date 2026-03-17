@@ -4,96 +4,100 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', function () {
-    gsap.set('.intro-name', { xPercent: 100 });
-    gsap.set('.btn-drawings', { yPercent: 600, opacity: 0 });
-    gsap.set('.btn-videos', { yPercent: 1000, opacity: 0 });
-    gsap.set('.btn-photography', { yPercent: 1000, opacity: 0 });
+    const intro = document.querySelector('.intro');
 
-    const slides = gsap.utils.toArray('.featured-slide');
-    gsap.set(slides[1], { yPercent: 100 });
+    if (intro) {
+        gsap.set('.intro-name', { xPercent: 100 });
+        gsap.set('.btn-drawings', { yPercent: 600, opacity: 0 });
+        gsap.set('.btn-videos', { yPercent: 1000, opacity: 0 });
+        gsap.set('.btn-photography', { yPercent: 1000, opacity: 0 });
 
-    // Build the timeline WITHOUT ScrollTrigger
-    let tl = gsap.timeline({ paused: true });
+        const slides = gsap.utils.toArray('.featured-slide');
+        gsap.set(slides[1], { yPercent: 100 });
 
-    // Phase 1: Overlay off + text in
-    tl.to('.intro-overlay', { xPercent: -100, duration: 3 }, 0);
-    tl.to('.intro-name', { xPercent: 0, duration: 3 }, 0);
+        // Build the timeline WITHOUT ScrollTrigger
+        let tl = gsap.timeline({ paused: true });
 
-    // Phase 2: Reveal
-    tl.to(
-        '.intro-name',
-        {
-            backgroundColor: 'transparent',
-            color: '#000',
-            duration: 4,
-        },
-        '+=1'
-    );
+        // Phase 1: Overlay off + text in
+        tl.to('.intro-overlay', { xPercent: -100, duration: 3 }, 0);
+        tl.to('.intro-name', { xPercent: 0, duration: 3 }, 0);
 
-    // Phase 3: Second slide
-    tl.to(slides[1], {
-        yPercent: 0,
-        duration: 3,
-        ease: 'power2.out',
-    });
+        // Phase 2: Reveal
+        tl.to(
+            '.intro-name',
+            {
+                backgroundColor: 'transparent',
+                color: '#000',
+                duration: 4,
+            },
+            '+=1'
+        );
 
-    // Phase 4: Buttons
-    tl.to(
-        '.btn-drawings',
-        {
+        // Phase 3: Second slide
+        tl.to(slides[1], {
             yPercent: 0,
-            opacity: 1,
-            duration: 4,
-            ease: 'power4.out',
-        },
-        '-=2'
-    );
+            duration: 3,
+            ease: 'power2.out',
+        });
 
-    tl.to(
-        '.btn-videos',
-        {
-            yPercent: 0,
-            opacity: 1,
-            duration: 4,
-            ease: 'power4.out',
-        },
-        '-=4'
-    );
+        // Phase 4: Buttons
+        tl.to(
+            '.btn-drawings',
+            {
+                yPercent: 0,
+                opacity: 1,
+                duration: 4,
+                ease: 'power4.out',
+            },
+            '-=2'
+        );
 
-    tl.to(
-        '.btn-photography',
-        {
-            yPercent: 0,
-            opacity: 1,
-            duration: 4,
-            ease: 'power4.out',
-        },
-        '-=3.5'
-    );
+        tl.to(
+            '.btn-videos',
+            {
+                yPercent: 0,
+                opacity: 1,
+                duration: 4,
+                ease: 'power4.out',
+            },
+            '-=4'
+        );
 
-    tl.to({}, { duration: 1 });
+        tl.to(
+            '.btn-photography',
+            {
+                yPercent: 0,
+                opacity: 1,
+                duration: 4,
+                ease: 'power4.out',
+            },
+            '-=3.5'
+        );
 
-    // Use Observer to drive the timeline
-    let progress = 0;
-    const speed = 0.0008;
+        tl.to({}, { duration: 1 });
 
-    ScrollTrigger.observe({
-        type: 'wheel,touch,pointer',
-        wheelSpeed: -1,
-        onChangeY(self) {
-            progress -= self.deltaY * speed;
-            if (progress < 0) progress = 0;
-            if (progress > 1) progress = 1;
-            gsap.to(tl, {
-                progress: progress,
-                duration: 1.2,
-                ease: 'power2.out',
-                overwrite: true,
-            });
-        },
-        tolerance: 5,
-        preventDefault: true,
-    });
+        // Use Observer to drive the timeline
+        let progress = 0;
+        const speed = 0.0008;
+
+        ScrollTrigger.observe({
+            type: 'wheel,touch,pointer',
+            wheelSpeed: -1,
+            onChangeY(self) {
+                progress -= self.deltaY * speed;
+                if (progress < 0) progress = 0;
+                if (progress > 1) progress = 1;
+                gsap.to(tl, {
+                    progress: progress,
+                    duration: 1.2,
+                    ease: 'power2.out',
+                    overwrite: true,
+                });
+            },
+            tolerance: 5,
+            preventDefault: true,
+        });
+    }
 });
 
 // ============================================

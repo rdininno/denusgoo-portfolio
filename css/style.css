@@ -271,6 +271,21 @@ img {
     color: #ffffff;
 }
 
+.btn-photography {
+    background: var(--color-teal);
+    border-color: var(--color-teal);
+    color: #ffffff;
+}
+
+.btn-photography .btn-bg {
+    background: var(--color-green);
+}
+
+.btn-photography:hover {
+    border-color: var(--color-green);
+    color: var(--color-text);
+}
+
 /* ============================================
    SITE HEADER
    ============================================ */

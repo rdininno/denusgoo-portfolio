@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.set('.intro-name', { xPercent: 100 });
     gsap.set('.btn-drawings', { yPercent: 600, opacity: 0 });
     gsap.set('.btn-videos', { yPercent: 1000, opacity: 0 });
+    gsap.set('.btn-photography', { yPercent: 1000, opacity: 0 });
 
     const slides = gsap.utils.toArray('.featured-slide');
     gsap.set(slides[1], { yPercent: 100 });
@@ -57,6 +58,17 @@ document.addEventListener('DOMContentLoaded', function () {
             ease: 'power4.out',
         },
         '-=4'
+    );
+
+    tl.to(
+        '.btn-photography',
+        {
+            yPercent: 0,
+            opacity: 1,
+            duration: 4,
+            ease: 'power4.out',
+        },
+        '-=3.5'
     );
 
     tl.to({}, { duration: 1 });

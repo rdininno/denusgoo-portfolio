@@ -5,7 +5,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', function () {
     gsap.set('.intro-name', { xPercent: 100 });
-    gsap.set('.landing-content', { yPercent: 100, opacity: 0 });
+    gsap.set('.btn-drawings', { yPercent: 600, opacity: 0 });
+    gsap.set('.btn-videos', { yPercent: 1000, opacity: 0 });
 
     const slides = gsap.utils.toArray('.featured-slide');
     gsap.set(slides[1], { yPercent: 100 });
@@ -36,12 +37,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Phase 4: Buttons
-    tl.to('.landing-content', {
-        yPercent: 0,
-        opacity: 1,
-        duration: 3,
-        ease: 'power2.out',
-    });
+    tl.to(
+        '.btn-drawings',
+        {
+            yPercent: 0,
+            opacity: 1,
+            duration: 4,
+            ease: 'power4.out',
+        },
+        '-=2'
+    );
+
+    tl.to(
+        '.btn-videos',
+        {
+            yPercent: 0,
+            opacity: 1,
+            duration: 4,
+            ease: 'power4.out',
+        },
+        '-=4'
+    );
 
     tl.to({}, { duration: 1 });
 

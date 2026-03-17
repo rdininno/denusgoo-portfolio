@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 duration: 4,
                 ease: 'power4.out',
             },
-            '-=2'
+            '-=2.5'
         );
 
         tl.to(

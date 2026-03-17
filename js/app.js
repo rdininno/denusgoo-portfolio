@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Phase 1: Overlay off + text in
         tl.to('.intro-overlay', { xPercent: -100, duration: 3 }, 0);
+        tl.to('.icon', { opacity: 0 }, 0);
         tl.to('.intro-name', { xPercent: 0, duration: 3 }, 0);
 
         // Phase 2: Reveal

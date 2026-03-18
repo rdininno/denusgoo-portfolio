@@ -49,61 +49,41 @@ async function fetchPosts(blog, tag) {
     }
 }
 function createPostCard(post) {
-    const article = document.createElement('article');
-    article.className = 'post-card';
+    const template = document.getElementById('post-card-template');
+    const card = template.content.cloneNode(true);
 
+    // Get the image
     let imageUrl = '';
-    let title = '';
-
-    // Handle different post types
-    if (post.type === 'photo') {
-        // Native photo post
-        imageUrl = post.photos?.[0]?.original_size?.url || '';
-        title = stripHtml(post.caption) || '';
-    } else if (post.type === 'text') {
-        // Text post - extract first image from body HTML
-        const imgMatch = post.body?.match(/<img[^>]+src="([^"]+)"/);
-        if (imgMatch) {
-            imageUrl = imgMatch[1];
-        }
-        title = post.title || stripHtml(post.body).substring(0, 100) || '';
-    } else if (post.type === 'video') {
-        imageUrl = post.thumbnail_url || '';
-        title = stripHtml(post.caption) || 'Video';
-    } else {
-        return null;
+    if (post.type === 'photo' && post.photos?.[0]) {
+        imageUrl = post.photos[0].original_size.url;
+    } else if (post.body) {
+        const match = post.body.match(/<img[^>]+src="([^"]+)"/);
+        if (match) imageUrl = match[1];
     }
 
-    article.innerHTML = `
-        <a href="post.html?id=${post.id_string || post.id}">
-            ${
-                imageUrl
-                    ? `
-                <div class="post-card-image">
-                    <img src="${imageUrl}" alt="${escapeHtml(title)}" loading="lazy">
-                </div>
-            `
-                    : ''
-            }
-            <div class="post-card-content">
-                ${
-                    post.tags && post.tags.length > 0
-                        ? `
-                    <div class="post-card-tags">
-                        ${post.tags
-                            .slice(0, 3)
-                            .map((tag) => `<span class="post-tag">${escapeHtml(tag)}</span>`)
-                            .join('')}
-                    </div>
-                `
-                        : ''
-                }
-                ${title ? `<h2 class="post-card-title">${escapeHtml(truncate(title, 80))}</h2>` : ''}
-            </div>
-        </a>
-    `;
+    // Fill in the data
+    const link = card.querySelector('a');
+    link.href = `post.html?id=${post.id}`;
 
-    return article;
+    const img = card.querySelector('.post-card-image img');
+    img.src = imageUrl;
+    img.alt = stripHtml(post.caption || post.title || '');
+
+    const title = card.querySelector('.post-card-title');
+    title.textContent = getCardTitle(post);
+
+    return card;
+}
+
+function getCardTitle(post) {
+    if (post.type === 'photo') {
+        return stripHtml(post.caption) || 'Photo';
+    } else if (post.type === 'video') {
+        return stripHtml(post.caption) || 'Video';
+    } else if (post.type === 'text') {
+        return post.title || 'Post';
+    }
+    return 'Post';
 }
 
 function stripHtml(html) {
